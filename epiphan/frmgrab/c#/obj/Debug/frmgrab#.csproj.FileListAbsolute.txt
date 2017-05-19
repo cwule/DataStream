@@ -1,5 +1,0 @@
-C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\frmgrab\c#\bin\Debug\frmgrab#.dll
-C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\frmgrab\c#\bin\Debug\frmgrab#.pdb
-C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\frmgrab\c#\obj\Debug\frmgrab#.csprojResolveAssemblyReference.cache
-C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\frmgrab\c#\obj\Debug\frmgrab#.dll
-C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\frmgrab\c#\obj\Debug\frmgrab#.pdb
