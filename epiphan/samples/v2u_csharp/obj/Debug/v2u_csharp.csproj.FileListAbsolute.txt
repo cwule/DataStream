@@ -1,0 +1,11 @@
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\bin\Debug\v2u_csharp.exe
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\bin\Debug\v2u_csharp.pdb
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\bin\Debug\frmgrab#.dll
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\bin\Debug\frmgrab#.pdb
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\obj\Debug\v2u_csharp.csprojResolveAssemblyReference.cache
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\obj\Debug\v2u_csharp.CaptureSettings.resources
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\obj\Debug\v2u_csharp.MainForm.resources
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\obj\Debug\v2u_csharp.Properties.Resources.resources
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\obj\Debug\v2u_csharp.csproj.GenerateResource.Cache
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\obj\Debug\v2u_csharp.exe
+C:\Users\BDML-Haptics\Documents\Visual Studio 2017\Projects\EpiphanAPI\epiphan\samples\v2u_csharp\obj\Debug\v2u_csharp.pdb
