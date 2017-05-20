@@ -69,7 +69,6 @@ public class UltraSoundFrameGrabber : MonoBehaviour
                     Frame frame = _grabber.GrabFrame();
 
                     /* The following part should be done on the HL side */
-                    RemoteMeshTarget.Is
                     if (frame != null)
                     {
                         texture = frame.GetTexture();
