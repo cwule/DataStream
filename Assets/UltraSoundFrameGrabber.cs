@@ -5,15 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using Epiphan.FrmGrab;
 
-public class UltraSoundFrameGrabber : MonoBehaviour {
+public class UltraSoundFrameGrabber : MonoBehaviour
+{
 
+    [Tooltip("The canvas where the streamed image will be displayed.")]
     public GameObject rawImage;
     private RawImage img;
     private Texture2D texture;
     private FrameGrabber _grabber;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         img = rawImage.GetComponent<RawImage>();
         texture = new Texture2D(300, 400);
         bool success = OpenGrabber();
@@ -64,6 +67,9 @@ public class UltraSoundFrameGrabber : MonoBehaviour {
                 if (vm.IsValid())
                 {
                     Frame frame = _grabber.GrabFrame();
+
+                    /* The following part should be done on the HL side */
+                    RemoteMeshTarget.Is
                     if (frame != null)
                     {
                         texture = frame.GetTexture();
