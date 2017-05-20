@@ -855,6 +855,50 @@ namespace Epiphan.FrmGrab
             return iTexture;
         }
 
+        /// <summary>
+        /// Returns Texture representation of this frame.
+        /// </summary>
+        public bool GetData(out IntPtr dataOut, out int imageWidth, out int imageHeight)
+        {
+            dataOut = new IntPtr();
+            imageWidth = 0;
+            imageHeight = 0;
+
+            if (iTexture == null && iFrame != null)
+            {
+                int Bpp = 0;
+                TextureFormat texFormat = TextureFormat.RGB565;
+                uint frameFormat = (iFrame->palette &
+                    FrameGrabber.V2U_GRABFRAME_FORMAT_MASK);
+                bool unsupportedFormat = false;
+                switch (frameFormat)
+                {
+                    case FrameGrabber.V2U_GRABFRAME_FORMAT_BGR24:
+                        texFormat = TextureFormat.RGB24;
+                        Bpp = 3;
+                        break;
+                    case FrameGrabber.V2U_GRABFRAME_FORMAT_RGB16:
+                        texFormat = TextureFormat.RGB565;
+                        Bpp = 2;
+                        break;
+                    default:
+                        Debug.Log("frmgrab: unsupported pixel format " +
+                            frameFormat);
+                        unsupportedFormat = true;
+                        break;
+                }
+                if (!unsupportedFormat)
+                {
+                    int stride = iFrame->crop.width * Bpp;
+                    int len = iFrame->crop.height * stride;
+                    imageWidth = iFrame->crop.width;
+                    imageHeight = iFrame->crop.height;
+                    dataOut = new IntPtr(iFrame->pixbuf);
+                    return true;
+                }
+            }
+            return false;
+        }
 
         ~Frame()
         {

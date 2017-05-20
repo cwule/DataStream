@@ -57,7 +57,7 @@ public class UltraSoundFrameGrabber : MonoBehaviour
         }
     }
 
-    private void GrabFrame()
+    public void GrabFrame()
     {
         if (OpenGrabber())
         {
@@ -67,8 +67,13 @@ public class UltraSoundFrameGrabber : MonoBehaviour
                 if (vm.IsValid())
                 {
                     Frame frame = _grabber.GrabFrame();
+                    IntPtr data;
+                    int imgWidth;
+                    int imgHeight;
+                    bool success = frame.GetData(out data, out imgWidth, out imgHeight);
 
                     /* The following part should be done on the HL side */
+#if false
                     if (frame != null)
                     {
                         texture = frame.GetTexture();
@@ -83,6 +88,7 @@ public class UltraSoundFrameGrabber : MonoBehaviour
                         Debug.Log("Capture failed");
                         SetGrabber(null);
                     }
+#endif
                 }
                 else
                 {
