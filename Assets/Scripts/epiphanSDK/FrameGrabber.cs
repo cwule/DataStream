@@ -726,7 +726,7 @@ namespace Epiphan.FrmGrab
         /// </summary>
         public unsafe Frame GrabFrame()
         {
-            return GrabFrame(V2U_GRABFRAME_FORMAT_RGB16, null);
+            return GrabFrame(V2U_GRABFRAME_FORMAT_RGB8, null);
         }
 
         /// <summary>
@@ -798,6 +798,7 @@ namespace Epiphan.FrmGrab
         {
             iGrabber = aGrabber;
             iFrame = aFrame;
+            //Debug.Log("crop width " + iFrame->crop.width + " crop height " + iFrame->crop.height);
             iTexture = null;
         }
 
@@ -848,7 +849,6 @@ namespace Epiphan.FrmGrab
                     iTexture = new Texture2D(iFrame->crop.width,
                         iFrame->crop.height, texFormat, false);
                     IntPtr pixbuf_ptr = new IntPtr(iFrame->pixbuf);
-                    byte* vals = (byte*)pixbuf_ptr.ToPointer();
                     iTexture.LoadRawTextureData(pixbuf_ptr, len); // This makes a copy of the read frames into a texture
                 }
             }
@@ -856,48 +856,23 @@ namespace Epiphan.FrmGrab
         }
 
         /// <summary>
-        /// Returns Texture representation of this frame.
+        /// Returns data buffer representation of this frame assuming pixel format RGB8.
         /// </summary>
-        public bool GetData(out IntPtr dataOut, out int imageWidth, out int imageHeight)
+        public bool GetData(out byte[] dataOut, out int imageWidth, out int imageHeight, int scale)
         {
-            dataOut = new IntPtr();
-            imageWidth = 0;
-            imageHeight = 0;
-
-            if (iTexture == null && iFrame != null)
+            imageWidth = iFrame->crop.width/scale;
+            imageHeight = iFrame->crop.height/scale;
+            byte *pixelBuffer = (byte*) iFrame->pixbuf;
+            byte[] downsampled = new byte[imageWidth*imageHeight];
+            for (int i = 0; i < iFrame->crop.width; i +=2)
             {
-                int Bpp = 0;
-                TextureFormat texFormat = TextureFormat.RGB565;
-                uint frameFormat = (iFrame->palette &
-                    FrameGrabber.V2U_GRABFRAME_FORMAT_MASK);
-                bool unsupportedFormat = false;
-                switch (frameFormat)
+                for (int j = 0; j < iFrame->crop.height; j += 2)
                 {
-                    case FrameGrabber.V2U_GRABFRAME_FORMAT_BGR24:
-                        texFormat = TextureFormat.RGB24;
-                        Bpp = 3;
-                        break;
-                    case FrameGrabber.V2U_GRABFRAME_FORMAT_RGB16:
-                        texFormat = TextureFormat.RGB565;
-                        Bpp = 2;
-                        break;
-                    default:
-                        Debug.Log("frmgrab: unsupported pixel format " +
-                            frameFormat);
-                        unsupportedFormat = true;
-                        break;
-                }
-                if (!unsupportedFormat)
-                {
-                    int stride = iFrame->crop.width * Bpp;
-                    int len = iFrame->crop.height * stride;
-                    imageWidth = iFrame->crop.width;
-                    imageHeight = iFrame->crop.height;
-                    dataOut = new IntPtr(iFrame->pixbuf);
-                    return true;
+                    downsampled[j / 2 + (i * imageWidth)/2] = pixelBuffer[j + i * iFrame->crop.width];
                 }
             }
-            return false;
+            dataOut = downsampled;
+            return true;
         }
 
         ~Frame()

@@ -7,7 +7,7 @@
 // Do not make changes to this file unless you know what you are doing--modify
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
-
+using UnityEngine;
 namespace HoloToolkit.Sharing {
 
 public class NetworkOutMessage : global::System.IDisposable {
